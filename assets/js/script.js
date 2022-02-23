@@ -22,6 +22,7 @@ function generatePassword() {
 
 // 2. validate user input
 
+    alert("Your password will contain lowercase characters: " + userLower + ", uppercase characters: " + userUpper + ", numbers: " + userNumber + ", special characters: " + userSpecial + ".")
 
 // 3. Generate Password
 var password = "";
