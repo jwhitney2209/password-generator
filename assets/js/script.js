@@ -1,93 +1,50 @@
 // Assignment code here
+var userLower = true;
+var userUpper = true;
+var userNumber = true;
+var userSpecial = true;
 
 // Begin Password Generation
-var generatePassword = function() {
-  getPasswordLength();
-  getPasswordUpper();
-  getPasswordLower();
-  getPasswordNumber();
-  getPasswordSpecial();
+function generatePassword() {
+
+// 1. prompt user for password criteria
+    passwordLength = parseInt(prompt("Choose a password length between 8 and 128."));
+//    a. Password Length 8 < 128
+    if (passwordLength < 8 || passwordLength > 128) {
+      alert("This is not a valid response! Please choose between 8 - 128 characters");
+      return false;
+    }
+//    b. lowercase, uppcase, numbers, special characters
+    userLower = confirm("Would you like lowercase characters in your password?")
+    userUpper = confirm("Would you like UPPER CASE characters in your password?")
+    userNumber = confirm("Would you like numbers in your password?")
+    userSpecial = confirm("Would you like special characters in your password?")
+
+// 2. validate user input
+
+
+// 3. Generate Password
+var password = "";
+while (password.length < passwordLength){
+  if(userLower){
+    password += getRandomLower()
+  }
+  if(userUpper){
+    password += getRandomUpper()
+  }
+  if(userNumber){
+    password += getRandomNumber()
+  }
+  if(userSpecial){
+    password+= getRandomSpecial()
+  }
 }
 
-// Generator Functions
-function getRandomLower () {
-  return String.fromCharCode();
+// 4. Display password on the page
+return password;
+
 }
 
-
-
-// User Prompts
-var getPasswordLength = function() {
-  var setPasswordLength = prompt("Choose a password length between 8 and 128 characters.");
-  // user didn't enter correct values
-  if (setPasswordLength === "" || setPasswordLength === null || setPasswordLength <= 8 || setPasswordLength >= 128) {
-    alert("That is an invalid response, please try again.");
-    return getPasswordLength();
-  } else if (setPasswordLength >= 8 || setPasswordLength <= 128); {
-    alert("You have chosen a password that will be " + setPasswordLength + " characters long.");
-    console.log("User's passworld will be " + setPasswordLength + " characters long.");
-  }
-};
-
-var getPasswordUpper = function () {
-  var setPasswordUpper = prompt("Would you like your password to include UPPER CASE characters? Type '1' for YES or '2' for No.");
-  // if user selected '1'
-  if (setPasswordUpper === "1") {
-    alert("You have chosen to have UPPER CASE characters in your password.");
-  } else if (setPasswordUpper === "2") {
-    alert("You have chosen NOT to have UPPER CASE characters in your password.");
-    console.log(setPasswordUpper);
-  } else if (setPasswordUpper === "" || setPasswordUpper === null) {
-    alert("This is an invalid response, please try again");
-    return getPasswordUpper();
-  }
-  console.log("User's response to UPPER CASE letters ('1' = Yes, '2' = No): " + setPasswordUpper + ".");
-};
-
-var getPasswordLower = function () {
-  var setPasswordLower = prompt("Would you like your password to include lower case characters? Type '1' for YES or '2' for No.");
-  // if user selected '1'
-  if (setPasswordLower === "1") {
-    alert("You have chosen to have lower case characters in your password.");
-  } else if (setPasswordLower === "2") {
-    alert("You have chosen NOT to have lower case characters in your password.");
-    console.log(setPasswordLower);
-  } else if (setPasswordLower === "" || setPasswordLower === null) {
-    alert("This is an invalid response, please try again");
-    return getPasswordLower();
-  }
-  console.log("User's response to lower case letters ('1' = Yes, '2' = No): " + setPasswordLower + ".");
-};
-
-var getPasswordNumber = function () {
-  var setPasswordNumber = prompt("Would you like your password to include numbers? Type '1' for YES or '2' for No.");
-  // if user selected '1'
-  if (setPasswordNumber === "1") {
-    alert("You have chosen to have numbers in your password.");
-  } else if (setPasswordNumber === "2") {
-    alert("You have chosen NOT to have numbers in your password.");
-    console.log(setPasswordNumber);
-  } else if (setPasswordNumber === "" || setPasswordNumber === null) {
-    alert("This is an invalid response, please try again");
-    return getPasswordNumber();
-  }
-  console.log("User's response to having numbers ('1' = Yes, '2' = No): " + setPasswordNumber + ".");
-};
-
-var getPasswordSpecial = function () {
-  var setPasswordSpecial = prompt("Would you like your password to include numbers? Type '1' for YES or '2' for No.");
-  // if user selected '1'
-  if (setPasswordSpecial === "1") {
-    alert("You have chosen to have numbers in your password.");
-  } else if (setPasswordSpecial === "2") {
-    alert("You have chosen NOT to have numbers in your password.");
-    console.log(setPasswordSpecial);
-  } else if (setPasswordSpecial === "" || setPasswordSpecial === null) {
-    alert("This is an invalid response, please try again");
-    return getPasswordSpecial();
-  }
-  console.log("User's response to having numbers ('1' = Yes, '2' = No): " + setPasswordSpecial + ".");
-};
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -103,3 +60,25 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+// Generator Functions
+function getRandomUpper() {
+  var uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  return uppers[Math.floor(Math.random() * uppers.length)];
+}
+
+function getRandomLower() {
+  var lowers = "abcdefghijklmnopqrstuvwxyz";
+  return lowers[Math.floor(Math.random() * lowers.length)];
+}
+
+function getRandomNumber() {
+  var numbers = "1234567890";
+  return numbers[Math.floor(Math.random() * numbers.length)];
+}
+
+function getRandomSpecial () {
+  var specials = "!@#$%^&*()-+{}[]<>";
+  return specials[Math.floor(Math.random() * specials.length)];
+}
+
